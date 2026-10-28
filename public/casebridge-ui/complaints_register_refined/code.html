@@ -1,0 +1,995 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta content="web_dashboard" name="shell-type"/>
+<title>AICTE Redressal — Complaints Register</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="../shared/sidebar.css"/>
+<script src="../shared/sidebar.js" defer></script>
+<style>
+    @layer base {
+      html, body { margin: 0; padding: 0; }
+    }
+    .custom-scrollbar::-webkit-scrollbar {
+      height: 6px;
+      width: 6px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-track {
+      background: #F1F5F9;
+      border-radius: 9999px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb {
+      background: #CBD5E1;
+      border-radius: 9999px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+      background: #94A3B8;
+    }
+  </style>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "gov-navy": "#102A43",
+            "gov-navy-light": "#1B3A5A",
+            "gov-blue": "#1D4ED8",
+            "gov-blue-hover": "#1E40AF",
+            "gov-border": "#DCE3EC",
+            "gov-bg": "#F5F7FA",
+            "gov-text": "#1F2937",
+            "gov-text-muted": "#64748B",
+            "gov-red": "#B91C1C",
+            "gov-green": "#15803D",
+            "gov-amber": "#92400E"
+          },
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            mono: ['"JetBrains Mono"', 'monospace']
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="bg-gov-bg font-sans text-gov-text antialiased min-h-screen">
+<!-- FIXED INSTITUTIONAL LEFT SIDEBAR -->
+<aside id="app-sidebar" class="app-sidebar fixed left-0 top-0 h-full w-64 bg-gov-navy z-50 flex flex-col justify-between shadow-lg text-slate-100" role="navigation" aria-label="Main Navigation">
+<div class="flex flex-col">
+<!-- Seal / Header -->
+<div class="px-5 py-5 flex items-center justify-between gap-3 bg-[#0A1D30] border-b border-slate-700/40">
+<div class="flex items-center gap-3 min-w-0">
+<div class="w-10 h-10 rounded-lg bg-gov-blue flex items-center justify-center text-white flex-shrink-0 shadow-sm">
+<span class="material-symbols-outlined text-[22px]">account_balance</span>
+</div>
+<div class="flex flex-col min-w-0">
+<span class="text-[10px] font-semibold uppercase tracking-wider text-blue-300">Govt. of India</span>
+<span class="text-[15px] font-bold text-white leading-snug truncate">AICTE Redressal</span>
+<span class="text-[11px] text-slate-400 truncate">Grievance Monitoring</span>
+</div>
+</div>
+<button id="sidebar-close" type="button" class="sidebar-close-btn lg:hidden p-1.5 rounded-lg text-slate-400 hover:text-white hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-white transition-colors shrink-0 ml-auto" aria-label="Close Navigation Menu">
+<span class="material-symbols-outlined text-xl">close</span>
+</button>
+</div>
+<!-- Navigation Section Label -->
+<div class="px-5 pt-5 pb-2">
+<span class="text-[10px] font-bold uppercase tracking-wider text-slate-400">Operational Console</span>
+</div>
+<!-- Nav Items -->
+<nav class="flex flex-col gap-1 px-3">
+<a class="flex items-center justify-between px-3.5 py-2.5 rounded-lg text-slate-300 hover:bg-slate-800/70 hover:text-white transition-colors" href="../grievance_monitoring_overview_refined/code.html">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-[20px] text-slate-400">dashboard</span>
+<span class="text-[13px] font-medium">Overview</span>
+</div>
+</a>
+<a aria-current="page" class="flex items-center justify-between px-3.5 py-2.5 rounded-lg transition-colors bg-gov-blue text-white shadow-sm" href="#">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-[20px]">assignment_late</span>
+<span class="text-[13px] font-semibold">Complaints Register</span>
+</div>
+<span class="px-2 py-0.5 rounded-full bg-red-600 text-white font-mono text-[11px] font-bold">1,284</span>
+</a>
+<a class="flex items-center justify-between px-3.5 py-2.5 rounded-lg text-slate-300 hover:bg-slate-800/70 hover:text-white transition-colors" href="../bureaus_operational_cells_refined/code.html">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-[20px] text-slate-400">corporate_fare</span>
+<span class="text-[13px] font-medium">Bureaus &amp; Cells</span>
+</div>
+<span class="px-2 py-0.5 rounded-full bg-slate-800 text-blue-200 font-mono text-[11px]">12</span>
+</a>
+<a class="flex items-center justify-between px-3.5 py-2.5 rounded-lg text-slate-300 hover:bg-slate-800/70 hover:text-white transition-colors" href="../institutions_registry_refined/code.html">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-[20px] text-slate-400">school</span>
+<span class="text-[13px] font-medium">Institutions</span>
+</div>
+<span class="px-2 py-0.5 rounded-full bg-slate-800 text-slate-400 font-mono text-[11px]">8,420</span>
+</a>
+</nav>
+</div>
+<!-- Bottom Sidebar Controls -->
+<div class="p-4 flex flex-col gap-2.5 bg-[#0C2237] border-t border-slate-700/40">
+<div class="flex items-center justify-between px-3 py-2 rounded-lg bg-slate-900/60 border border-slate-700/50">
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+<span class="text-[12px] text-slate-300 font-medium">Portal Live • v2.4.1</span>
+</div>
+<span class="material-symbols-outlined text-[16px] text-slate-400">security</span>
+</div>
+<div class="flex items-center justify-between px-3 py-1.5 rounded-lg bg-slate-800/80 text-[11px]">
+<span class="font-bold uppercase tracking-wider text-slate-400">Sandbox Mode</span>
+<button class="font-semibold text-amber-400 hover:text-amber-300 transition-colors">Reset Data</button>
+</div>
+<a class="flex items-center gap-2 px-2 py-1 text-slate-400 hover:text-slate-200 text-[12px] transition-colors" href="#">
+<span class="material-symbols-outlined text-[18px]">menu_book</span>
+<span>Redressal SOP &amp; Docs</span>
+</a>
+</div>
+</aside>
+<!-- BACKDROP OVERLAY -->
+<div id="sidebar-backdrop" class="sidebar-backdrop" aria-hidden="true"></div>
+<!-- MAIN WRAPPER WITH PROPER LEFT MARGIN -->
+<div class="app-main-wrapper pl-0 lg:pl-64 flex flex-col min-h-screen">
+<!-- INSTITUTIONAL TOP BAR -->
+<header class="app-header fixed top-0 left-0 lg:left-64 right-0 h-16 bg-white border-b border-gov-border z-40 flex items-center justify-between px-4 sm:px-8 shadow-xs">
+<div class="flex items-center gap-2 sm:gap-5 flex-1 max-w-2xl min-w-0">
+<button id="sidebar-toggle" type="button" class="sidebar-toggle-btn lg:hidden inline-flex items-center justify-center p-2 rounded-lg text-slate-700 hover:text-gov-blue hover:bg-slate-100 focus:outline-none focus:ring-2 focus:ring-gov-blue focus:ring-offset-2 transition-colors shrink-0 -ml-1 mr-1" aria-label="Open Navigation Menu" aria-expanded="false" aria-controls="app-sidebar">
+<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M4 6h16M4 12h16M4 18h16"></path>
+</svg>
+</button>
+<div class="flex items-center gap-1.5 text-xs text-gov-text-muted whitespace-nowrap shrink-0">
+<span class="font-bold text-gov-blue">AICTE</span>
+<span class="text-slate-300">/</span>
+<span class="text-gov-text font-medium hidden sm:inline">Central Grievance Grid</span>
+<span class="text-gov-text font-medium sm:hidden">Grievance Grid</span>
+</div>
+<!-- Global Search Bar with Ctrl+K shortcut -->
+<div class="relative w-full max-w-md hidden md:block">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-gov-text-muted text-[19px]">search</span>
+<input class="w-full pl-9 pr-14 py-2 rounded-lg bg-slate-50 border border-gov-border text-xs text-gov-text placeholder:text-gov-text-muted focus:outline-none focus:ring-2 focus:ring-gov-blue/20 focus:border-gov-blue transition-colors" placeholder="Search Complaint ID, Bureau, or Institution..." type="text"/>
+<kbd class="absolute right-2.5 top-1/2 -translate-y-1/2 px-1.5 py-0.5 text-[10px] font-mono text-slate-500 bg-white border border-slate-200 rounded shadow-2xs pointer-events-none">Ctrl K</kbd>
+</div>
+</div>
+<div class="flex items-center gap-3 sm:gap-4 shrink-0">
+<!-- Helpline -->
+<div class="hidden xl:flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-blue-50/80 border border-blue-100 text-gov-text-muted text-xs">
+<span class="material-symbols-outlined text-[16px] text-gov-blue">support_agent</span>
+<span class="font-medium text-slate-700">Helpline: <strong class="text-gov-blue font-semibold">1800-11-2244</strong></span>
+</div>
+<!-- Notification Bell -->
+<div class="relative">
+<button class="w-9 h-9 rounded-lg flex items-center justify-center text-slate-600 hover:bg-slate-100 hover:text-slate-900 transition-colors" aria-label="Notifications">
+<span class="material-symbols-outlined text-[22px]">notifications</span>
+</button>
+<span class="absolute top-2 right-2 w-2 h-2 rounded-full bg-gov-red ring-2 ring-white"></span>
+</div>
+<div class="h-6 w-px bg-slate-200 hidden sm:block"></div>
+<!-- Officer Profile -->
+<div class="flex items-center gap-2.5 cursor-pointer pl-1">
+<img alt="Profile" class="w-8 h-8 rounded-full object-cover ring-2 ring-gov-blue/20 shrink-0" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCQUYUvCJfwxAudAOOrkaZVyL4sp4wWLLtQA7zlcgn4gxcxizUzB7bhYuRdzJQJVSCxki8fW_ZOF6iXbEQYWV_WTt1LbwDM7vWtTHxHLbs_7L0f2CUqtE1amdHv4xlqWLEB9BcoQHk6oO0bRlcWV0I8wujaF8dxr_9cFgEpRAD4YWt78crlTzQ9B8ybjRn7zXfawUTZw8-g1PMVqStL_G4CaX_-8o76OnzKYwnohMhws72Fdtd8hFjxRg"/>
+<div class="hidden sm:flex flex-col text-left">
+<div class="flex items-center gap-1.5">
+<span class="text-xs font-bold text-slate-800 leading-tight">Dr. V. Swaminathan</span>
+<span class="px-1.5 py-0.2 rounded bg-blue-100 text-blue-800 text-[9px] font-bold uppercase tracking-wider">Director</span>
+</div>
+<span class="text-[11px] text-gov-text-muted leading-tight">Central Operations Bureau</span>
+</div>
+<span class="material-symbols-outlined text-slate-400 text-[18px] hidden sm:inline">expand_more</span>
+</div>
+</div>
+</header>
+<!-- CONTENT BODY -->
+<main class="app-main-content px-4 sm:px-6 lg:px-8 pb-12 flex-1">
+<div class="max-w-[1400px] mx-auto space-y-6">
+<!-- PAGE HEADER / DOCKET TITLE -->
+<div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4 bg-white p-6 rounded-xl border border-gov-border shadow-xs">
+<div class="flex flex-col gap-1.5">
+<div class="flex items-center gap-3 flex-wrap">
+<h1 class="text-2xl font-bold text-slate-900 tracking-tight">Complaints Register</h1>
+<span class="px-3 py-1 rounded-full bg-blue-50 text-blue-800 border border-blue-200 font-mono text-xs font-semibold">
+                1,482 Petitions Registered
+              </span>
+<span class="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-emerald-50 text-emerald-800 border border-emerald-200 text-xs font-medium">
+<span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                Live Ingestion Sync
+              </span>
+</div>
+<p class="text-sm text-gov-text-muted max-w-3xl leading-relaxed">
+              Central audit log and statutory case management docket of all petitions submitted across technical institutions under AICTE regulatory purview.
+            </p>
+</div>
+<div class="flex items-center gap-3 flex-shrink-0">
+<button class="flex items-center gap-2 px-4 py-2.5 rounded-lg border border-gov-border bg-white text-slate-700 hover:bg-slate-50 transition-colors text-xs font-semibold shadow-2xs">
+<span class="material-symbols-outlined text-[18px] text-slate-600">download</span>
+<span>Export Audit Docket</span>
+</button>
+<button class="flex items-center gap-2 px-4 py-2.5 rounded-lg bg-gov-blue hover:bg-gov-blue-hover text-white transition-colors text-xs font-semibold shadow-xs">
+<span class="material-symbols-outlined text-[18px]">add_circle</span>
+<span>+ Register Manual Grievance</span>
+</button>
+</div>
+</div>
+<!-- 4 REFINED KPI CARDS WITH METRIC CLARITY -->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+<!-- Total Complaints -->
+<div class="bg-white p-5 rounded-xl border border-gov-border shadow-xs flex flex-col justify-between relative overflow-hidden">
+<div class="flex items-start justify-between">
+<div>
+<span class="text-xs font-bold text-slate-500 uppercase tracking-wider">Total Complaints</span>
+<div class="flex items-baseline gap-2 mt-1.5">
+<span class="text-3xl font-extrabold text-slate-900 tracking-tight font-sans">1,482</span>
+<span class="text-xs font-semibold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-full flex items-center gap-0.5">
+<span class="material-symbols-outlined text-[14px]">trending_up</span> +14 today
+                  </span>
+</div>
+</div>
+<div class="w-10 h-10 rounded-lg bg-slate-100 border border-slate-200 flex items-center justify-center text-slate-700 flex-shrink-0">
+<span class="material-symbols-outlined text-[22px]">inventory_2</span>
+</div>
+</div>
+<div class="mt-3 pt-3 border-t border-slate-100 flex items-center justify-between text-[11px] text-slate-500">
+<span class="truncate">Active Queue: <strong class="text-slate-800 font-semibold font-mono">1,284</strong> verified</span>
+<span class="text-slate-400 font-medium">Pan-India</span>
+</div>
+</div>
+<!-- Open & In-Review -->
+<div class="bg-white p-5 rounded-xl border border-gov-border shadow-xs flex flex-col justify-between">
+<div class="flex items-start justify-between">
+<div>
+<span class="text-xs font-bold text-slate-500 uppercase tracking-wider">Open &amp; In-Review</span>
+<div class="flex items-baseline gap-2 mt-1.5">
+<span class="text-3xl font-extrabold text-gov-blue tracking-tight font-sans">342</span>
+<span class="text-xs font-medium text-slate-500">active dossiers</span>
+</div>
+</div>
+<div class="w-10 h-10 rounded-lg bg-blue-50 border border-blue-200 flex items-center justify-center text-gov-blue flex-shrink-0">
+<span class="material-symbols-outlined text-[22px]">pending_actions</span>
+</div>
+</div>
+<div class="mt-3 pt-3 border-t border-slate-100 flex items-center gap-1.5 text-[11px] text-blue-700 font-medium">
+<span class="material-symbols-outlined text-[15px]">sync</span>
+<span>23.07% total volume under inquiry</span>
+</div>
+</div>
+<!-- Critical / Overdue -->
+<div class="bg-white p-5 rounded-xl border border-red-200 bg-gradient-to-br from-white to-red-50/30 shadow-xs flex flex-col justify-between">
+<div class="flex items-start justify-between">
+<div>
+<span class="text-xs font-bold text-gov-red uppercase tracking-wider">Critical / Overdue</span>
+<div class="flex items-baseline gap-2 mt-1.5">
+<span class="text-3xl font-extrabold text-gov-red tracking-tight font-sans">48</span>
+<span class="text-xs font-semibold text-red-700 bg-red-100 px-2 py-0.5 rounded-full">breached SLA</span>
+</div>
+</div>
+<div class="w-10 h-10 rounded-lg bg-red-100 border border-red-200 flex items-center justify-center text-gov-red flex-shrink-0">
+<span class="material-symbols-outlined text-[22px]">crisis_alert</span>
+</div>
+</div>
+<div class="mt-3 pt-3 border-t border-red-100 flex items-center gap-1.5 text-[11px] text-red-700 font-semibold">
+<span class="material-symbols-outlined text-[15px]">warning</span>
+<span>Requires immediate Nodal intervention</span>
+</div>
+</div>
+<!-- Successfully Resolved -->
+<div class="bg-white p-5 rounded-xl border border-gov-border shadow-xs flex flex-col justify-between">
+<div class="flex items-start justify-between">
+<div>
+<span class="text-xs font-bold text-slate-500 uppercase tracking-wider">Successfully Resolved</span>
+<div class="flex items-baseline gap-2 mt-1.5">
+<span class="text-3xl font-extrabold text-emerald-700 tracking-tight font-sans">1,092</span>
+<span class="text-xs font-medium text-slate-500">settled cases</span>
+</div>
+</div>
+<div class="w-10 h-10 rounded-lg bg-emerald-50 border border-emerald-200 flex items-center justify-center text-gov-green flex-shrink-0">
+<span class="material-symbols-outlined text-[22px]">task_alt</span>
+</div>
+</div>
+<div class="mt-3 pt-3 border-t border-slate-100 flex items-center gap-1.5 text-[11px] text-emerald-700 font-semibold">
+<span class="material-symbols-outlined text-[15px]">verified</span>
+<span>73.68% Redressal rate across terms</span>
+</div>
+</div>
+</div>
+<!-- SPACIOUS SEARCH & FACETED FILTER TOOLBAR -->
+<div class="bg-white p-5 rounded-xl border border-gov-border shadow-xs space-y-4">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-3 items-center">
+<!-- Search Input (40px clean height) -->
+<div class="lg:col-span-5 relative">
+<span class="material-symbols-outlined absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-[20px]">search</span>
+<input class="w-full h-10 pl-10 pr-4 rounded-lg bg-slate-50/70 border border-gov-border text-xs text-slate-800 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-gov-blue/20 focus:border-gov-blue font-medium" placeholder="Search by ID, keyword, institution, or officer..." type="text" value="GRV-2024"/>
+</div>
+<!-- Filter Dropdowns with comfortable padding -->
+<div class="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-5 gap-2.5">
+<!-- Bureau -->
+<div class="relative">
+<select class="w-full h-10 appearance-none pl-3 pr-8 rounded-lg bg-slate-50 border border-gov-border text-xs font-medium text-slate-700 focus:outline-none focus:ring-2 focus:ring-gov-blue/20 focus:border-gov-blue cursor-pointer truncate">
+<option>All Bureaus</option>
+<option>Approval Bureau</option>
+<option>Anti-Ragging Cell</option>
+<option>Faculty Welfare</option>
+<option>Vigilance Bureau</option>
+<option>Policy Cell</option>
+</select>
+<span class="material-symbols-outlined absolute right-2.5 top-1/2 -translate-y-1/2 text-slate-400 text-[18px] pointer-events-none">expand_more</span>
+</div>
+<!-- Status -->
+<div class="relative">
+<select class="w-full h-10 appearance-none pl-3 pr-8 rounded-lg bg-slate-50 border border-gov-border text-xs font-medium text-slate-700 focus:outline-none focus:ring-2 focus:ring-gov-blue/20 focus:border-gov-blue cursor-pointer truncate">
+<option>All Statuses</option>
+<option selected="">Open / In Progress</option>
+<option>Escalated</option>
+<option>Hearing Scheduled</option>
+<option>Investigation</option>
+<option>Resolved</option>
+<option>Dismissed</option>
+</select>
+<span class="material-symbols-outlined absolute right-2.5 top-1/2 -translate-y-1/2 text-slate-400 text-[18px] pointer-events-none">expand_more</span>
+</div>
+<!-- Priority -->
+<div class="relative">
+<select class="w-full h-10 appearance-none pl-3 pr-8 rounded-lg bg-slate-50 border border-gov-border text-xs font-medium text-slate-700 focus:outline-none focus:ring-2 focus:ring-gov-blue/20 focus:border-gov-blue cursor-pointer truncate">
+<option>Priority: All</option>
+<option selected="">Critical &amp; High</option>
+<option>Medium</option>
+<option>Low</option>
+</select>
+<span class="material-symbols-outlined absolute right-2.5 top-1/2 -translate-y-1/2 text-slate-400 text-[18px] pointer-events-none">expand_more</span>
+</div>
+<!-- State / UT -->
+<div class="relative">
+<select class="w-full h-10 appearance-none pl-3 pr-8 rounded-lg bg-slate-50 border border-gov-border text-xs font-medium text-slate-700 focus:outline-none focus:ring-2 focus:ring-gov-blue/20 focus:border-gov-blue cursor-pointer truncate">
+<option>All States / Zones</option>
+<option>Maharashtra</option>
+<option>Karnataka</option>
+<option>Uttar Pradesh</option>
+<option>Delhi NCR</option>
+<option>Tamil Nadu</option>
+<option>Telangana</option>
+<option>West Bengal</option>
+</select>
+<span class="material-symbols-outlined absolute right-2.5 top-1/2 -translate-y-1/2 text-slate-400 text-[18px] pointer-events-none">expand_more</span>
+</div>
+<!-- SLA Status -->
+<div class="relative">
+<select class="w-full h-10 appearance-none pl-3 pr-8 rounded-lg bg-slate-50 border border-gov-border text-xs font-medium text-slate-700 focus:outline-none focus:ring-2 focus:ring-gov-blue/20 focus:border-gov-blue cursor-pointer truncate">
+<option>All SLA States</option>
+<option>Approaching (&lt;24h)</option>
+<option>Overdue (&gt;0h)</option>
+<option>Standard SLA</option>
+</select>
+<span class="material-symbols-outlined absolute right-2.5 top-1/2 -translate-y-1/2 text-slate-400 text-[18px] pointer-events-none">expand_more</span>
+</div>
+</div>
+</div>
+<!-- Active Filter Chips Bar -->
+<div class="flex items-center justify-between gap-3 flex-wrap pt-2 border-t border-slate-100 text-xs">
+<div class="flex items-center gap-2 flex-wrap">
+<span class="text-slate-500 font-medium">Active Facets:</span>
+<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-100 border border-slate-200 text-slate-800 text-xs font-medium">
+<span>Priority: <strong class="font-semibold text-slate-900">Critical &amp; High</strong></span>
+<button class="hover:text-gov-red transition-colors flex items-center justify-center ml-0.5"><span class="material-symbols-outlined text-[14px]">close</span></button>
+</span>
+<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-100 border border-slate-200 text-slate-800 text-xs font-medium">
+<span>Status: <strong class="font-semibold text-slate-900">Open / In Progress</strong></span>
+<button class="hover:text-gov-red transition-colors flex items-center justify-center ml-0.5"><span class="material-symbols-outlined text-[14px]">close</span></button>
+</span>
+<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-100 border border-slate-200 text-slate-800 text-xs font-medium">
+<span>Keyword: <code class="font-mono text-gov-blue font-bold">"GRV-2024"</code></span>
+<button class="hover:text-gov-red transition-colors flex items-center justify-center ml-0.5"><span class="material-symbols-outlined text-[14px]">close</span></button>
+</span>
+</div>
+<button class="text-xs font-semibold text-gov-blue hover:text-gov-blue-hover hover:underline transition-colors">
+              Clear All Filters
+            </button>
+</div>
+</div>
+<!-- HIGH-DENSITY, FULLY CONTAINED COMPLAINTS MASTER TABLE -->
+<div class="bg-white rounded-xl border border-gov-border shadow-xs overflow-hidden flex flex-col">
+<!-- Table Utility Strip -->
+<div class="px-5 py-3 bg-slate-50 border-b border-gov-border flex items-center justify-between">
+<div class="flex items-center gap-3">
+<span class="text-xs font-bold text-slate-700 uppercase tracking-wider">
+                Registry Ledger • Batch Mode
+              </span>
+<span class="px-2.5 py-0.5 rounded-full bg-white border border-slate-200 text-slate-600 font-mono text-[11px] font-medium shadow-2xs">
+                Showing 8 of 1,482 cases
+              </span>
+</div>
+<div class="flex items-center gap-1">
+<button class="p-1.5 rounded-md text-slate-500 hover:text-slate-800 hover:bg-slate-200/70 transition-colors" title="Reload Registry">
+<span class="material-symbols-outlined text-[18px]">refresh</span>
+</button>
+<button class="p-1.5 rounded-md text-slate-500 hover:text-slate-800 hover:bg-slate-200/70 transition-colors" title="Customize Columns">
+<span class="material-symbols-outlined text-[18px]">view_column</span>
+</button>
+<button class="p-1.5 rounded-md text-slate-500 hover:text-slate-800 hover:bg-slate-200/70 transition-colors" title="Density Settings">
+<span class="material-symbols-outlined text-[18px]">density_medium</span>
+</button>
+</div>
+</div>
+<!-- Table Container with deliberate minimum width to prevent edge clipping -->
+<div class="overflow-x-auto custom-scrollbar w-full">
+<table class="w-full text-left border-collapse min-w-[1160px]">
+<thead>
+<tr class="bg-slate-50/90 text-slate-600 text-[11px] font-bold uppercase tracking-wider border-b border-gov-border">
+<th class="py-3.5 px-4 w-[160px] whitespace-nowrap">Complaint ID &amp; Filing</th>
+<th class="py-3.5 px-4 w-[330px]">Subject / Allegation Summary</th>
+<th class="py-3.5 px-4 w-[240px]">Institution &amp; Campus</th>
+<th class="py-3.5 px-4 w-[190px]">Bureau &amp; Officer</th>
+<th class="py-3.5 px-3 w-[100px] text-center">Priority</th>
+<th class="py-3.5 px-3 w-[130px] text-center">Status</th>
+<th class="py-3.5 px-4 w-[160px]">SLA Timeline</th>
+<th class="py-3.5 px-4 w-[110px] text-right">Action</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-slate-100 text-xs">
+<!-- ROW 1 -->
+<tr class="hover:bg-slate-50/80 transition-colors group">
+<td class="py-3.5 px-4 align-top">
+<div class="flex flex-col">
+<span class="font-mono text-xs font-bold text-slate-900 group-hover:text-gov-blue transition-colors">
+                        GRV-2024-9241
+                      </span>
+<span class="text-[11px] text-slate-500 mt-0.5">Filed 08 Nov 2024</span>
+</div>
+</td>
+<td class="py-3.5 px-4 align-top">
+<div class="flex flex-col">
+<span class="text-xs font-semibold text-slate-900 leading-snug line-clamp-2">
+                        Arbitrary cancellation of postgraduate admission without refund
+                      </span>
+<span class="text-[11px] text-slate-500 mt-1 line-clamp-1">
+                        M.Tech AI stream: fee forfeiture violation against statutory AICTE norms 2024-25.
+                      </span>
+</div>
+</td>
+<td class="py-3.5 px-4 align-top">
+<div class="flex flex-col">
+<span class="text-xs font-semibold text-slate-800 leading-snug">
+                        Imperial College of Engg.
+                      </span>
+<span class="text-[11px] text-slate-500 mt-0.5">
+                        PID: 1-39482 • Greater Noida, UP
+                      </span>
+</div>
+</td>
+<td class="py-3.5 px-4 align-top">
+<div class="flex flex-col">
+<span class="text-xs font-semibold text-slate-800">Approval Bureau</span>
+<span class="text-[11px] text-slate-500 mt-0.5">Dr. R.K. Shrivastava</span>
+</div>
+</td>
+<td class="py-3.5 px-3 align-top text-center whitespace-nowrap">
+<span class="inline-block px-2.5 py-0.5 rounded-full bg-red-50 text-red-700 border border-red-200 text-[10px] font-bold uppercase tracking-wider">
+                      Critical
+                    </span>
+</td>
+<td class="py-3.5 px-3 align-top text-center whitespace-nowrap">
+<span class="inline-block px-2.5 py-0.5 rounded-full bg-red-100 text-red-800 font-semibold text-[11px]">
+                      Escalated
+                    </span>
+</td>
+<td class="py-3.5 px-4 align-top whitespace-nowrap">
+<div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-red-50 border border-red-200 text-red-700 font-mono text-[11px] font-bold">
+<span class="material-symbols-outlined text-[14px]">error</span>
+<span>3d Overdue</span>
+</div>
+</td>
+<td class="py-3.5 px-4 align-top text-right whitespace-nowrap">
+<button class="inline-flex items-center gap-1 px-2.5 py-1 rounded-md bg-slate-50 hover:bg-gov-blue hover:text-white border border-slate-200 text-gov-blue text-[11px] font-bold transition-all shadow-2xs">
+<span>View Docket</span>
+<span class="material-symbols-outlined text-[13px]">arrow_forward</span>
+</button>
+</td>
+</tr>
+<!-- ROW 2 -->
+<tr class="hover:bg-slate-50/80 transition-colors group">
+<td class="py-3.5 px-4 align-top">
+<div class="flex flex-col">
+<span class="font-mono text-xs font-bold text-slate-900 group-hover:text-gov-blue transition-colors">
+                        GRV-2024-9218
+                      </span>
+<span class="text-[11px] text-slate-500 mt-0.5">Filed 09 Nov 2024</span>
+</div>
+</td>
+<td class="py-3.5 px-4 align-top">
+<div class="flex flex-col">
+<span class="text-xs font-semibold text-slate-900 leading-snug line-clamp-2">
+                        Non-payment of AICTE PG GATE scholarship stipend for 4 consecutive months
+                      </span>
+<span class="text-[11px] text-slate-500 mt-1 line-clamp-1">
+                        Research fellows verification pending institution sign-off since July 2024.
+                      </span>
+</div>
+</td>
+<td class="py-3.5 px-4 align-top">
+<div class="flex flex-col">
+<span class="text-xs font-semibold text-slate-800 leading-snug">
+                        National Inst. of Tech &amp; Research
+                      </span>
+<span class="text-[11px] text-slate-500 mt-0.5">
+                        PID: 1-48291 • Bhopal, MP
+                      </span>
+</div>
+</td>
+<td class="py-3.5 px-4 align-top">
+<div class="flex flex-col">
+<span class="text-xs font-semibold text-slate-800">Student Welfare Cell</span>
+<span class="text-[11px] text-slate-500 mt-0.5">Prof. M. Sundaram</span>
+</div>
+</td>
+<td class="py-3.5 px-3 align-top text-center whitespace-nowrap">
+<span class="inline-block px-2.5 py-0.5 rounded-full bg-amber-50 text-amber-800 border border-amber-200 text-[10px] font-bold uppercase tracking-wider">
+                      High
+                    </span>
+</td>
+<td class="py-3.5 px-3 align-top text-center whitespace-nowrap">
+<span class="inline-block px-2.5 py-0.5 rounded-full bg-blue-100 text-blue-800 font-semibold text-[11px]">
+                      In Review
+                    </span>
+</td>
+<td class="py-3.5 px-4 align-top whitespace-nowrap">
+<div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-amber-50 border border-amber-200 text-amber-900 font-mono text-[11px] font-bold">
+<span class="material-symbols-outlined text-[14px]">schedule</span>
+<span>SLA in 6h 30m</span>
+</div>
+</td>
+<td class="py-3.5 px-4 align-top text-right whitespace-nowrap">
+<button class="inline-flex items-center gap-1 px-2.5 py-1 rounded-md bg-slate-50 hover:bg-gov-blue hover:text-white border border-slate-200 text-gov-blue text-[11px] font-bold transition-all shadow-2xs">
+<span>View Docket</span>
+<span class="material-symbols-outlined text-[13px]">arrow_forward</span>
+</button>
+</td>
+</tr>
+<!-- ROW 3 -->
+<tr class="hover:bg-slate-50/80 transition-colors group">
+<td class="py-3.5 px-4 align-top">
+<div class="flex flex-col">
+<span class="font-mono text-xs font-bold text-slate-900 group-hover:text-gov-blue transition-colors">
+                        GRV-2024-9204
+                      </span>
+<span class="text-[11px] text-slate-500 mt-0.5">Filed 09 Nov 2024</span>
+</div>
+</td>
+<td class="py-3.5 px-4 align-top">
+<div class="flex flex-col">
+<span class="text-xs font-semibold text-slate-900 leading-snug line-clamp-2">
+                        Forced overtime &amp; non-compliance with 7th CPC pay scales for faculty
+                      </span>
+<span class="text-[11px] text-slate-500 mt-1 line-clamp-1">
+                        Collective petition by 14 Associate Professors regarding arbitrary pay cuts.
+                      </span>
+</div>
+</td>
+<td class="py-3.5 px-4 align-top">
+<div class="flex flex-col">
+<span class="text-xs font-semibold text-slate-800 leading-snug">
+                        Deccan Inst. of Pharma Sciences
+                      </span>
+<span class="text-[11px] text-slate-500 mt-0.5">
+                        PID: 1-84920 • Pune, MH
+                      </span>
+</div>
+</td>
+<td class="py-3.5 px-4 align-top">
+<div class="flex flex-col">
+<span class="text-xs font-semibold text-slate-800">Faculty Welfare Cell</span>
+<span class="text-[11px] text-slate-500 mt-0.5">Dr. A. Mukherjee</span>
+</div>
+</td>
+<td class="py-3.5 px-3 align-top text-center whitespace-nowrap">
+<span class="inline-block px-2.5 py-0.5 rounded-full bg-amber-50 text-amber-800 border border-amber-200 text-[10px] font-bold uppercase tracking-wider">
+                      High
+                    </span>
+</td>
+<td class="py-3.5 px-3 align-top text-center whitespace-nowrap">
+<span class="inline-block px-2.5 py-0.5 rounded-full bg-indigo-50 text-indigo-700 border border-indigo-200 font-semibold text-[11px]">
+                      Investigation
+                    </span>
+</td>
+<td class="py-3.5 px-4 align-top whitespace-nowrap">
+<div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-slate-100 border border-slate-200 text-slate-700 font-mono text-[11px] font-medium">
+<span class="material-symbols-outlined text-[14px]">schedule</span>
+<span>SLA in 18h</span>
+</div>
+</td>
+<td class="py-3.5 px-4 align-top text-right whitespace-nowrap">
+<button class="inline-flex items-center gap-1 px-2.5 py-1 rounded-md bg-slate-50 hover:bg-gov-blue hover:text-white border border-slate-200 text-gov-blue text-[11px] font-bold transition-all shadow-2xs">
+<span>View Docket</span>
+<span class="material-symbols-outlined text-[13px]">arrow_forward</span>
+</button>
+</td>
+</tr>
+<!-- ROW 4 -->
+<tr class="hover:bg-slate-50/80 transition-colors group">
+<td class="py-3.5 px-4 align-top">
+<div class="flex flex-col">
+<span class="font-mono text-xs font-bold text-slate-900 group-hover:text-gov-blue transition-colors">
+                        GRV-2024-9189
+                      </span>
+<span class="text-[11px] text-slate-500 mt-0.5">Filed 10 Nov 2024</span>
+</div>
+</td>
+<td class="py-3.5 px-4 align-top">
+<div class="flex flex-col">
+<span class="text-xs font-semibold text-slate-900 leading-snug line-clamp-2">
+                        Violation of mandatory 24x7 anti-ragging squad patrols in hostels
+                      </span>
+<span class="text-[11px] text-slate-500 mt-1 line-clamp-1">
+                        Freshmen hostel corridor cameras inoperable; complaints to ombudsman ignored.
+                      </span>
+</div>
+</td>
+<td class="py-3.5 px-4 align-top">
+<div class="flex flex-col">
+<span class="text-xs font-semibold text-slate-800 leading-snug">
+                        St. Jude Polytechnic College
+                      </span>
+<span class="text-[11px] text-slate-500 mt-0.5">
+                        PID: 1-73910 • Chennai, TN
+                      </span>
+</div>
+</td>
+<td class="py-3.5 px-4 align-top">
+<div class="flex flex-col">
+<span class="text-xs font-semibold text-slate-800">Anti-Ragging Cell</span>
+<span class="text-[11px] text-slate-500 mt-0.5">Prof. M. Sundaram</span>
+</div>
+</td>
+<td class="py-3.5 px-3 align-top text-center whitespace-nowrap">
+<span class="inline-block px-2.5 py-0.5 rounded-full bg-red-50 text-red-700 border border-red-200 text-[10px] font-bold uppercase tracking-wider">
+                      Critical
+                    </span>
+</td>
+<td class="py-3.5 px-3 align-top text-center whitespace-nowrap">
+<span class="inline-block px-2.5 py-0.5 rounded-full bg-red-100 text-red-800 font-semibold text-[11px]">
+                      Escalated
+                    </span>
+</td>
+<td class="py-3.5 px-4 align-top whitespace-nowrap">
+<div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-red-100 border border-red-300 text-red-800 font-mono text-[11px] font-bold animate-pulse">
+<span class="material-symbols-outlined text-[14px]">alarm</span>
+<span>SLA in 2h 10m</span>
+</div>
+</td>
+<td class="py-3.5 px-4 align-top text-right whitespace-nowrap">
+<button class="inline-flex items-center gap-1 px-2.5 py-1 rounded-md bg-slate-50 hover:bg-gov-blue hover:text-white border border-slate-200 text-gov-blue text-[11px] font-bold transition-all shadow-2xs">
+<span>View Docket</span>
+<span class="material-symbols-outlined text-[13px]">arrow_forward</span>
+</button>
+</td>
+</tr>
+<!-- ROW 5 -->
+<tr class="hover:bg-slate-50/80 transition-colors group">
+<td class="py-3.5 px-4 align-top">
+<div class="flex flex-col">
+<span class="font-mono text-xs font-bold text-slate-900 group-hover:text-gov-blue transition-colors">
+                        GRV-2024-9150
+                      </span>
+<span class="text-[11px] text-slate-500 mt-0.5">Filed 10 Nov 2024</span>
+</div>
+</td>
+<td class="py-3.5 px-4 align-top">
+<div class="flex flex-col">
+<span class="text-xs font-semibold text-slate-900 leading-snug line-clamp-2">
+                        Denial of original academic certificates &amp; marksheets release
+                      </span>
+<span class="text-[11px] text-slate-500 mt-1 line-clamp-1">
+                        Demand for unauthorized alumni development fee before issuing migration NOC.
+                      </span>
+</div>
+</td>
+<td class="py-3.5 px-4 align-top">
+<div class="flex flex-col">
+<span class="text-xs font-semibold text-slate-800 leading-snug">
+                        Apex University Inst. of Tech
+                      </span>
+<span class="text-[11px] text-slate-500 mt-0.5">
+                        PID: 1-61029 • Jaipur, RJ
+                      </span>
+</div>
+</td>
+<td class="py-3.5 px-4 align-top">
+<div class="flex flex-col">
+<span class="text-xs font-semibold text-slate-800">Approval Bureau</span>
+<span class="text-[11px] text-slate-500 mt-0.5">Dr. R.K. Shrivastava</span>
+</div>
+</td>
+<td class="py-3.5 px-3 align-top text-center whitespace-nowrap">
+<span class="inline-block px-2.5 py-0.5 rounded-full bg-blue-50 text-blue-700 border border-blue-200 text-[10px] font-bold uppercase tracking-wider">
+                      Medium
+                    </span>
+</td>
+<td class="py-3.5 px-3 align-top text-center whitespace-nowrap">
+<span class="inline-block px-2.5 py-0.5 rounded-full bg-slate-100 text-slate-700 font-semibold text-[11px]">
+                      Open
+                    </span>
+</td>
+<td class="py-3.5 px-4 align-top whitespace-nowrap">
+<div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-slate-100 border border-slate-200 text-slate-700 font-mono text-[11px] font-medium">
+<span class="material-symbols-outlined text-[14px]">schedule</span>
+<span>SLA in 3 days</span>
+</div>
+</td>
+<td class="py-3.5 px-4 align-top text-right whitespace-nowrap">
+<button class="inline-flex items-center gap-1 px-2.5 py-1 rounded-md bg-slate-50 hover:bg-gov-blue hover:text-white border border-slate-200 text-gov-blue text-[11px] font-bold transition-all shadow-2xs">
+<span>View Docket</span>
+<span class="material-symbols-outlined text-[13px]">arrow_forward</span>
+</button>
+</td>
+</tr>
+<!-- ROW 6 -->
+<tr class="hover:bg-slate-50/80 transition-colors group">
+<td class="py-3.5 px-4 align-top">
+<div class="flex flex-col">
+<span class="font-mono text-xs font-bold text-slate-900 group-hover:text-gov-blue transition-colors">
+                        GRV-2024-9122
+                      </span>
+<span class="text-[11px] text-slate-500 mt-0.5">Filed 11 Nov 2024</span>
+</div>
+</td>
+<td class="py-3.5 px-4 align-top">
+<div class="flex flex-col">
+<span class="text-xs font-semibold text-slate-900 leading-snug line-clamp-2">
+                        Operating unapproved robotics branch without AICTE seat matrix
+                      </span>
+<span class="text-[11px] text-slate-500 mt-1 line-clamp-1">
+                        Admitted 60 pupils under self-financed scheme without formal council affiliation.
+                      </span>
+</div>
+</td>
+<td class="py-3.5 px-4 align-top">
+<div class="flex flex-col">
+<span class="text-xs font-semibold text-slate-800 leading-snug">
+                        Royal College of Architecture &amp; Tech
+                      </span>
+<span class="text-[11px] text-slate-500 mt-0.5">
+                        PID: 1-92847 • Ahmedabad, GJ
+                      </span>
+</div>
+</td>
+<td class="py-3.5 px-4 align-top">
+<div class="flex flex-col">
+<span class="text-xs font-semibold text-slate-800">Vigilance &amp; Ethics Cell</span>
+<span class="text-[11px] text-slate-500 mt-0.5">Shri A.K. Verma</span>
+</div>
+</td>
+<td class="py-3.5 px-3 align-top text-center whitespace-nowrap">
+<span class="inline-block px-2.5 py-0.5 rounded-full bg-amber-50 text-amber-800 border border-amber-200 text-[10px] font-bold uppercase tracking-wider">
+                      High
+                    </span>
+</td>
+<td class="py-3.5 px-3 align-top text-center whitespace-nowrap">
+<span class="inline-block px-2.5 py-0.5 rounded-full bg-purple-50 text-purple-700 border border-purple-200 font-semibold text-[11px]">
+                      Hearing Scheduled
+                    </span>
+</td>
+<td class="py-3.5 px-4 align-top whitespace-nowrap">
+<div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-amber-50 border border-amber-200 text-amber-900 font-mono text-[11px] font-medium">
+<span class="material-symbols-outlined text-[14px]">schedule</span>
+<span>SLA in 1 day</span>
+</div>
+</td>
+<td class="py-3.5 px-4 align-top text-right whitespace-nowrap">
+<button class="inline-flex items-center gap-1 px-2.5 py-1 rounded-md bg-slate-50 hover:bg-gov-blue hover:text-white border border-slate-200 text-gov-blue text-[11px] font-bold transition-all shadow-2xs">
+<span>View Docket</span>
+<span class="material-symbols-outlined text-[13px]">arrow_forward</span>
+</button>
+</td>
+</tr>
+<!-- ROW 7 -->
+<tr class="hover:bg-slate-50/80 transition-colors group">
+<td class="py-3.5 px-4 align-top">
+<div class="flex flex-col">
+<span class="font-mono text-xs font-bold text-slate-900 group-hover:text-gov-blue transition-colors">
+                        GRV-2024-9088
+                      </span>
+<span class="text-[11px] text-slate-500 mt-0.5">Filed 11 Nov 2024</span>
+</div>
+</td>
+<td class="py-3.5 px-4 align-top">
+<div class="flex flex-col">
+<span class="text-xs font-semibold text-slate-900 leading-snug line-clamp-2">
+                        Infrastructure deficit: lack of functional labs &amp; fire audits
+                      </span>
+<span class="text-[11px] text-slate-500 mt-1 line-clamp-1">
+                        Chemical engineering labs lack certified eyewash and mandatory emergency exhaust.
+                      </span>
+</div>
+</td>
+<td class="py-3.5 px-4 align-top">
+<div class="flex flex-col">
+<span class="text-xs font-semibold text-slate-800 leading-snug">
+                        Greenfield Engineering Institute
+                      </span>
+<span class="text-[11px] text-slate-500 mt-0.5">
+                        PID: 1-58291 • Hyderabad, TS
+                      </span>
+</div>
+</td>
+<td class="py-3.5 px-4 align-top">
+<div class="flex flex-col">
+<span class="text-xs font-semibold text-slate-800">Approval Bureau</span>
+<span class="text-[11px] text-slate-500 mt-0.5">Dr. R.K. Shrivastava</span>
+</div>
+</td>
+<td class="py-3.5 px-3 align-top text-center whitespace-nowrap">
+<span class="inline-block px-2.5 py-0.5 rounded-full bg-blue-50 text-blue-700 border border-blue-200 text-[10px] font-bold uppercase tracking-wider">
+                      Medium
+                    </span>
+</td>
+<td class="py-3.5 px-3 align-top text-center whitespace-nowrap">
+<span class="inline-block px-2.5 py-0.5 rounded-full bg-blue-100 text-blue-800 font-semibold text-[11px]">
+                      In Review
+                    </span>
+</td>
+<td class="py-3.5 px-4 align-top whitespace-nowrap">
+<div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-slate-100 border border-slate-200 text-slate-700 font-mono text-[11px] font-medium">
+<span class="material-symbols-outlined text-[14px]">schedule</span>
+<span>SLA in 4 days</span>
+</div>
+</td>
+<td class="py-3.5 px-4 align-top text-right whitespace-nowrap">
+<button class="inline-flex items-center gap-1 px-2.5 py-1 rounded-md bg-slate-50 hover:bg-gov-blue hover:text-white border border-slate-200 text-gov-blue text-[11px] font-bold transition-all shadow-2xs">
+<span>View Docket</span>
+<span class="material-symbols-outlined text-[13px]">arrow_forward</span>
+</button>
+</td>
+</tr>
+<!-- ROW 8 -->
+<tr class="hover:bg-slate-50/80 transition-colors group">
+<td class="py-3.5 px-4 align-top">
+<div class="flex flex-col">
+<span class="font-mono text-xs font-bold text-slate-900 group-hover:text-gov-blue transition-colors">
+                        GRV-2024-8995
+                      </span>
+<span class="text-[11px] text-slate-500 mt-0.5">Filed 06 Nov 2024</span>
+</div>
+</td>
+<td class="py-3.5 px-4 align-top">
+<div class="flex flex-col">
+<span class="text-xs font-semibold text-slate-900 leading-snug line-clamp-2">
+                        Discrepancy in online exam scoring &amp; refusal of scrutiny
+                      </span>
+<span class="text-[11px] text-slate-500 mt-1 line-clamp-1">
+                        Server synchronization glitch verified; revised grade sheet released to student.
+                      </span>
+</div>
+</td>
+<td class="py-3.5 px-4 align-top">
+<div class="flex flex-col">
+<span class="text-xs font-semibold text-slate-800 leading-snug">
+                        Central Polytechnic Institute
+                      </span>
+<span class="text-[11px] text-slate-500 mt-0.5">
+                        PID: 1-38291 • Kolkata, WB
+                      </span>
+</div>
+</td>
+<td class="py-3.5 px-4 align-top">
+<div class="flex flex-col">
+<span class="text-xs font-semibold text-slate-800">Academic Planning Cell</span>
+<span class="text-[11px] text-slate-500 mt-0.5">Dr. H. Chandra</span>
+</div>
+</td>
+<td class="py-3.5 px-3 align-top text-center whitespace-nowrap">
+<span class="inline-block px-2.5 py-0.5 rounded-full bg-slate-100 text-slate-600 border border-slate-200 text-[10px] font-bold uppercase tracking-wider">
+                      Low
+                    </span>
+</td>
+<td class="py-3.5 px-3 align-top text-center whitespace-nowrap">
+<span class="inline-block px-2.5 py-0.5 rounded-full bg-emerald-100 text-emerald-800 font-semibold text-[11px]">
+                      Resolved
+                    </span>
+</td>
+<td class="py-3.5 px-4 align-top whitespace-nowrap">
+<div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-emerald-50 border border-emerald-200 text-emerald-700 font-mono text-[11px] font-bold">
+<span class="material-symbols-outlined text-[14px]">done_all</span>
+<span>Resolved 12 Nov</span>
+</div>
+</td>
+<td class="py-3.5 px-4 align-top text-right whitespace-nowrap">
+<button class="inline-flex items-center gap-1 px-2.5 py-1 rounded-md bg-slate-50 hover:bg-gov-blue hover:text-white border border-slate-200 text-gov-blue text-[11px] font-bold transition-all shadow-2xs">
+<span>View Docket</span>
+<span class="material-symbols-outlined text-[13px]">arrow_forward</span>
+</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- TABLE FOOTER & ACCESSIBLE PAGINATION -->
+<div class="px-5 py-3.5 bg-slate-50 border-t border-gov-border flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-600">
+<div class="flex items-center gap-1.5">
+<span>Showing <strong class="text-slate-900 font-semibold">1 to 8</strong> of <strong class="text-slate-900 font-semibold">1,482</strong> entries</span>
+<span class="hidden md:inline text-slate-400">• Filtered from 1,482 total records across 12 zones</span>
+</div>
+<div class="flex items-center gap-4">
+<!-- Rows Per Page -->
+<div class="flex items-center gap-2">
+<span class="text-slate-500">Show:</span>
+<select class="px-2.5 py-1 rounded-lg bg-white border border-gov-border text-xs font-semibold text-slate-700 focus:outline-none focus:ring-1 focus:ring-gov-blue cursor-pointer shadow-2xs">
+<option>10 rows</option>
+<option>25 rows</option>
+<option>50 rows</option>
+<option>100 rows</option>
+</select>
+</div>
+<!-- Pagination buttons -->
+<nav aria-label="Pagination" class="flex items-center gap-1">
+<button class="px-2.5 py-1.5 rounded-lg border border-gov-border bg-white text-slate-400 font-semibold flex items-center gap-1 cursor-not-allowed" disabled="">
+<span class="material-symbols-outlined text-[16px]">chevron_left</span>
+<span class="hidden sm:inline">Prev</span>
+</button>
+<button class="w-8 h-8 rounded-lg bg-gov-blue text-white font-bold flex items-center justify-center shadow-xs">
+                  1
+                </button>
+<button class="w-8 h-8 rounded-lg border border-gov-border bg-white text-slate-700 hover:bg-slate-100 font-semibold flex items-center justify-center transition-colors">
+                  2
+                </button>
+<button class="w-8 h-8 rounded-lg border border-gov-border bg-white text-slate-700 hover:bg-slate-100 font-semibold flex items-center justify-center transition-colors">
+                  3
+                </button>
+<span class="px-1 text-slate-400">...</span>
+<button class="w-8 h-8 rounded-lg border border-gov-border bg-white text-slate-700 hover:bg-slate-100 font-semibold flex items-center justify-center transition-colors">
+                  186
+                </button>
+<button class="px-2.5 py-1.5 rounded-lg border border-gov-border bg-white text-slate-700 hover:bg-slate-100 font-semibold flex items-center gap-1 transition-colors">
+<span class="hidden sm:inline">Next</span>
+<span class="material-symbols-outlined text-[16px]">chevron_right</span>
+</button>
+</nav>
+</div>
+</div>
+</div>
+<!-- STATUTORY ESCALATION & SLA NOTICE CALLOUTS -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+<div class="bg-white p-5 rounded-xl border border-gov-border shadow-xs flex items-start gap-3.5">
+<span class="material-symbols-outlined text-gov-blue text-[24px] mt-0.5 flex-shrink-0">verified_user</span>
+<div class="flex flex-col">
+<span class="text-xs font-bold text-slate-900">Statutory 30-Day Resolution SLA</span>
+<span class="text-xs text-slate-500 mt-1 leading-relaxed">
+                All formal grievances must receive an inquiry officer appointment within 7 days and closure report in 30 days per AICTE (Redressal of Grievance of Students) Regulations.
+              </span>
+</div>
+</div>
+<div class="bg-white p-5 rounded-xl border border-gov-border shadow-xs flex items-start gap-3.5">
+<span class="material-symbols-outlined text-gov-red text-[24px] mt-0.5 flex-shrink-0">policy</span>
+<div class="flex flex-col">
+<span class="text-xs font-bold text-slate-900">Ombudsman Escalation Matrix</span>
+<span class="text-xs text-slate-500 mt-1 leading-relaxed">
+                Grievances pending beyond 21 calendar days automatically transition to Apex Monitoring Secretariat and regional joint director docket for immediate show-cause notice.
+              </span>
+</div>
+</div>
+<div class="bg-white p-5 rounded-xl border border-gov-border shadow-xs flex items-start gap-3.5">
+<span class="material-symbols-outlined text-amber-700 text-[24px] mt-0.5 flex-shrink-0">auto_stories</span>
+<div class="flex flex-col">
+<span class="text-xs font-bold text-slate-900">Autonomous Audit Trail</span>
+<span class="text-xs text-slate-500 mt-1 leading-relaxed">
+                Every case disposition, document subpoena, and institutional hearing audio log is cryptographically stamped on the National Informatics Framework server.
+              </span>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- FOOTER -->
+<footer class="w-full bg-white border-t border-gov-border py-4 px-4 sm:px-8 mt-auto">
+<div class="max-w-[1400px] mx-auto flex flex-col md:flex-row items-center justify-between gap-2 text-slate-500 text-xs">
+<span>Statutory Public Grievance Portal • All India Council for Technical Education (AICTE), New Delhi</span>
+<div class="flex items-center gap-6">
+<span>National Informatics Framework</span>
+<span>Cyber Audit Certified</span>
+<span>Grievance Redressal SLA v2.0</span>
+</div>
+</div>
+</footer>
+</div>
+</body></html>
